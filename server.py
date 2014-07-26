@@ -20,7 +20,7 @@ def simple_app(environ, start_response):
 #    ret.append(pprint.pformat(environ))
     return ["\n\n".join(ret)]
 
-port = int(os.getenv('PORT'))
+port = int(os.getenv('PORT', '8000'))
 
 httpd = make_server('', port, simple_app)
 print "Serving HTTP on port %d..."%port
