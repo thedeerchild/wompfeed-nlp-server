@@ -19,7 +19,7 @@ def do_ner(text):
 
 
 	    grammar = r"""
-  NP: {<DT|PP\$>?<JJ>*<NN|NNP>+}   # chunk determiner/possessive, adjectives and noun
+  NP: {<JJ|JJR|JJS>*<NN|NNP|NNS|NNPS>+}   # chunk adjectives and noun
 """ #      {<NNP>+}                # chunk sequences of proper nouns
 #"""        
             cp = nltk.RegexpParser(grammar)
