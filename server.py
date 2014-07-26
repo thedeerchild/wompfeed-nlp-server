@@ -9,7 +9,7 @@ def simple_app(environ, start_response):
     status = '200 OK'
     response_headers = [('Content-type', 'text/plain')]
     start_response(status, response_headers)
-    ret = ['Hello world!']
+    ret = []
     if 'ner' in environ['PATH_INFO']:
         query = urlparse.parse_qs(environ['QUERY_STRING'])
         if 'text' in query:

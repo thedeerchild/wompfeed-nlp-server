@@ -1,6 +1,6 @@
 import nltk
 import re
-import pprint
+import json
 
 nltk.download('maxent_ne_chunker')
 nltk.download('maxent_treebank_pos_tagger')
@@ -33,7 +33,15 @@ def do_ner(text):
 	    np += [" ".join(w[0] for w in t.leaves()) for t in ret['noun_phrases_tree']]
 	    ne += [" ".join(w[0] for w in t.leaves()) for t in ret['named_entities_tree']]
 	    rl.append(ret)
-	return pprint.pformat({'noun_phrases': np, 'named_entities': ne})
+	ne.sort(key=len, reverse=True)
+	ne.sort(key=len, reverse=True)
+	best_guess = []
+	best_guess += ne
+	if len(ne) == 0:
+		best_guess += np
+	if len(ne) <= 3:
+		best_guess += np[:5]
+	return json.dumps({'noun_phrases': np, 'named_entities': ne, 'best_guess':best_guess})
 
 
 if __name__ == "__main__":
