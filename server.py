@@ -19,7 +19,7 @@ def simple_app(environ, start_response):
 #    ret.append(pprint.pformat(environ))
     return ["\n\n".join(ret)]
 
-httpd = make_server('', 8000, simple_app)
+httpd = make_server('', 80, simple_app)
 print "Serving HTTP on port 8000..."
 
 # Respond to requests until process is killed
