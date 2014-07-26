@@ -2,6 +2,11 @@ import nltk
 import re
 import pprint
 
+nltk.download('maxent_ne_chunker')
+nltk.download('maxent_treebank_pos_tagger')
+nltk.download('punkt')
+nltk.download('words')
+
 def do_ner(text):
 	print text
 	rl = []
