@@ -1,6 +1,7 @@
 from wsgiref.simple_server import make_server
 import pprint
 import urlparse
+import os
 from named_entity import *
 
 def simple_app(environ, start_response):
@@ -19,8 +20,10 @@ def simple_app(environ, start_response):
 #    ret.append(pprint.pformat(environ))
     return ["\n\n".join(ret)]
 
-httpd = make_server('', 80, simple_app)
-print "Serving HTTP on port 8000..."
+port = int(os.getenv('PORT'))
+
+httpd = make_server('', port, simple_app)
+print "Serving HTTP on port %d..."%port
 
 # Respond to requests until process is killed
 httpd.serve_forever()
