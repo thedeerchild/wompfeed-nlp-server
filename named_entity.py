@@ -34,7 +34,7 @@ def do_ner(text):
 	    ne += [" ".join(w[0] for w in t.leaves()) for t in ret['named_entities_tree']]
 	    rl.append(ret)
 	ne.sort(key=len, reverse=True)
-	ne.sort(key=len, reverse=True)
+	np.sort(key=len, reverse=True)
 	best_guess = []
 	best_guess += ne
 	if len(ne) == 0:
