@@ -39,9 +39,9 @@ def do_ner(text):
 	np_sort.sort(key=len, reverse=True)
 	np_filter = filter(lambda x: len(x) >= 15, np_sort)
 	best_guess = []
-	best_guess += ne_sort
+	best_guess += ne_sort[:10]
 	if len(ne_sort) == 0:
-		best_guess += np_filter
+		best_guess += np_filter[:10]
 	else:
 		best_guess += np_filter[:5]
 	if len(best_guess) == 0:
