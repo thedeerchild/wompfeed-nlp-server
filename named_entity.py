@@ -35,13 +35,15 @@ def do_ner(text):
 	    rl.append(ret)
 	ne.sort(key=len, reverse=True)
 	np.sort(key=len, reverse=True)
-	np = filter(lambda x: len(x) >= 15, np)
+	np_filter = filter(lambda x: len(x) >= 15, np)
 	best_guess = []
 	best_guess += ne
 	if len(ne) == 0:
-		best_guess += np
+		best_guess += np_filter
 	if len(ne) <= 3:
-		best_guess += np[:5]
+		best_guess += np_filter[:5]
+	if len(best_guess) == 0:
+		best_guess += np
 	return json.dumps({'noun_phrases': np, 'named_entities': ne, 'best_guess':best_guess})
 
 
