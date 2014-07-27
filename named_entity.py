@@ -19,7 +19,7 @@ def do_ner(text):
 
 
 	    grammar = r"""
-  NP: {<JJ|JJR|JJS>*<NN|NNP|NNS|NNPS>+}   # chunk adjectives and noun
+  NP: {<DT|PP\$>?<JJ|JJR|JJS>*<NN|NNP|NNS|NNPS>+}   # chunk adjectives and noun
 """ #      {<NNP>+}                # chunk sequences of proper nouns
 #"""        
             cp = nltk.RegexpParser(grammar)
@@ -35,6 +35,7 @@ def do_ner(text):
 	    rl.append(ret)
 	ne.sort(key=len, reverse=True)
 	np.sort(key=len, reverse=True)
+	np = filter(lambda x: len(x) >= 6, np)
 	best_guess = []
 	best_guess += ne
 	if len(ne) == 0:
