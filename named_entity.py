@@ -33,10 +33,10 @@ def do_ner(text):
 	    np += [" ".join(w[0] for w in t.leaves()) for t in ret['noun_phrases_tree']]
 	    ne += [" ".join(w[0] for w in t.leaves()) for t in ret['named_entities_tree']]
 	    rl.append(ret)
-	ne = list(set(ne))
-	np = list(set(np))
-	ne_sort = ne.sorted(key=len, reverse=True)
-	np_sort = np.sorted(key=len, reverse=True)
+	ne_sort = list(set(ne))
+	np_sort = list(set(np))
+	ne_sort = ne_sort.sort(key=len, reverse=True)
+	np_sort = np_sort.sort(key=len, reverse=True)
 	np_filter = filter(lambda x: len(x) >= 15, np_sort)
 	best_guess = []
 	best_guess += ne_sort
