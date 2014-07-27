@@ -35,7 +35,7 @@ def do_ner(text):
 	    rl.append(ret)
 	ne.sort(key=len, reverse=True)
 	np.sort(key=len, reverse=True)
-	np = filter(lambda x: len(x) >= 6, np)
+	np = filter(lambda x: len(x) >= 15, np)
 	best_guess = []
 	best_guess += ne
 	if len(ne) == 0:
