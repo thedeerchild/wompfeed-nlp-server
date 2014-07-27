@@ -35,8 +35,8 @@ def do_ner(text):
 	    rl.append(ret)
 	ne_sort = list(set(ne))
 	np_sort = list(set(np))
-	ne_sort = ne_sort.sort(key=len, reverse=True)
-	np_sort = np_sort.sort(key=len, reverse=True)
+	ne_sort.sort(key=len, reverse=True)
+	np_sort.sort(key=len, reverse=True)
 	np_filter = filter(lambda x: len(x) >= 15, np_sort)
 	best_guess = []
 	best_guess += ne_sort
