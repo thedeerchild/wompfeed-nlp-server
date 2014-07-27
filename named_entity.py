@@ -46,7 +46,7 @@ def do_ner(text):
 		best_guess += np_filter[:5]
 	if len(best_guess) == 0:
 		best_guess += np_sort
-	return json.dumps({'noun_phrases': np, 'named_entities': ne, 'best_guess':best_guess})
+	return json.dumps({'noun_phrases': np, 'named_entities': ne, 'best_guess':best_guess}, sort_keys=True, indent=4, separators=(',',': '))
 
 
 if __name__ == "__main__":
