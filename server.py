@@ -7,7 +7,7 @@ from named_entity import *
 def simple_app(environ, start_response):
     """Simplest possible application object"""
     status = '200 OK'
-    response_headers = [('Content-type', 'text/plain')]
+    response_headers = [('Content-type', 'text/plain'),('Access-Control-Allow-Origin','*')]
     start_response(status, response_headers)
     ret = []
     if 'ner' in environ['PATH_INFO']:
