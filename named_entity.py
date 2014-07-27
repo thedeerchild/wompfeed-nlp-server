@@ -10,8 +10,8 @@ nltk.download('words')
 def do_ner(text):
 	print text
 	rl = []
-	np = []
-	ne = []
+	np = set()
+	ne = set()
         for sentence in nltk.sent_tokenize(text): #re.sub(r'[^\x00-\x7F]+',' ', text)):
 
             sentence_tok = nltk.word_tokenize(sentence)
@@ -33,17 +33,17 @@ def do_ner(text):
 	    np += [" ".join(w[0] for w in t.leaves()) for t in ret['noun_phrases_tree']]
 	    ne += [" ".join(w[0] for w in t.leaves()) for t in ret['named_entities_tree']]
 	    rl.append(ret)
-	ne.sort(key=len, reverse=True)
-	np.sort(key=len, reverse=True)
-	np_filter = filter(lambda x: len(x) >= 15, np)
+	ne_sort = ne.sorted(key=len, reverse=True)
+	np_sort = np.sorted(key=len, reverse=True)
+	np_filter = filter(lambda x: len(x) >= 15, np_sort)
 	best_guess = []
-	best_guess += ne
-	if len(ne) == 0:
+	best_guess += ne_sort
+	if len(ne_sort) == 0:
 		best_guess += np_filter
-	if len(ne) <= 3:
+	else:
 		best_guess += np_filter[:5]
 	if len(best_guess) == 0:
-		best_guess += np
+		best_guess += np_sort
 	return json.dumps({'noun_phrases': np, 'named_entities': ne, 'best_guess':best_guess})
 
 
